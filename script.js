@@ -98,40 +98,50 @@ document.addEventListener('DOMContentLoaded', () => {
         const searchInput = document.getElementById('toolSearch');
         if (!container) return;
 
+        // Simulate loading feel
         const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
         const activeFilter = document.querySelector('.category-filter-btn.active')?.dataset.filter || 'all';
 
-        container.innerHTML = '';
+        // Clear skeletons if first render
+        if (container.querySelector('.skeleton-loader')) {
+            container.innerHTML = '';
+        }
 
-        toolsData.forEach((catData) => {
-            const filteredTools = catData.tools.filter(tool => {
+        const filteredCategories = toolsData.map(cat => ({
+            ...cat,
+            tools: cat.tools.filter(tool => {
                 const matchSearch = tool.name.toLowerCase().includes(searchTerm) || tool.what.toLowerCase().includes(searchTerm);
                 if (activeFilter === 'bookmarked') return matchSearch && bookmarkedTools.includes(tool.name);
                 if (activeFilter === 'learned') return matchSearch && learnedTools.includes(tool.name);
                 return matchSearch;
-            });
+            })
+        })).filter(cat => cat.tools.length > 0);
 
-            if (filteredTools.length === 0) return;
+        if (filteredCategories.length === 0) {
+            container.innerHTML = '<div class="empty-state" style="text-align:center; padding: 4rem; color: var(--text-dim);"><i class="fas fa-search fa-3x mb-1"></i><p>No tools found matching your criteria.</p></div>';
+            return;
+        }
 
+        container.innerHTML = '';
+        filteredCategories.forEach((catData) => {
             const categoryHTML = document.createElement('div');
             categoryHTML.className = 'bookmark-category reveal active';
             categoryHTML.style.marginBottom = '3rem';
             categoryHTML.innerHTML = `
-                <div class="category-header glass" onclick="this.parentElement.classList.toggle('collapsed')" style="padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                <div class="category-header glass" style="padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
                     <h3 style="font-size: 1rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em;">${catData.category}</h3>
-                    <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="tools-grid">
-                    ${filteredTools.map(tool => `
+                    ${catData.tools.map(tool => `
                         <div class="tool-card glass ${learnedTools.includes(tool.name) ? 'learned' : ''}">
                             <div class="tool-header">
                                 <div class="tool-info">
                                     <div class="tool-icon"><i class="${tool.icon}"></i></div>
-                                    <div class="tool-name"><h4>${tool.name}</h4><span class="tag tag-level" style="font-size: 0.6rem; background: var(--border-subtle); padding: 2px 6px; border-radius: 4px;">${tool.level}</span></div>
+                                    <div class="tool-name"><h4>${tool.name}</h4><span class="tag tag-level">${tool.level}</span></div>
                                 </div>
                                 <div class="tool-actions">
-                                    <button class="action-btn ${bookmarkedTools.includes(tool.name) ? 'active' : ''}" onclick="event.stopPropagation(); window.toggleBookmark('${tool.name}')"><i class="fas fa-star"></i></button>
-                                    <button class="action-btn" onclick="event.stopPropagation(); window.toggleLearned('${tool.name}')" style="color: ${learnedTools.includes(tool.name) ? 'var(--success)' : 'inherit'}"><i class="fas fa-check-circle"></i></button>
+                                    <button class="action-btn ${bookmarkedTools.includes(tool.name) ? 'active' : ''}" onclick="window.toggleBookmark('${tool.name}')"><i class="fas fa-star"></i></button>
+                                    <button class="action-btn" onclick="window.toggleLearned('${tool.name}')" style="color: ${learnedTools.includes(tool.name) ? 'var(--success)' : 'inherit'}"><i class="fas fa-check-circle"></i></button>
                                 </div>
                             </div>
                             <div class="tool-body"><p>${tool.what}</p></div>
@@ -163,6 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
     const sidebar = document.getElementById('sidebar');
     const mobileToggle = document.getElementById('mobileToggle');
+    const roadmapSearch = document.getElementById('roadmapSearch');
+    const toolSearch = document.getElementById('toolSearch');
     const topNav = document.querySelector('.top-nav');
     const backToTop = document.getElementById('backToTop');
     const scrollTracker = document.getElementById('scrollTracker');
@@ -195,6 +207,21 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('fullstackProgress', JSON.stringify(completedSteps));
         updateProgress();
     };
+
+    // Roadmap Search
+    if (roadmapSearch) {
+        roadmapSearch.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            roadmapSteps.forEach(step => {
+                const text = step.innerText.toLowerCase();
+                step.style.display = text.includes(term) ? 'block' : 'none';
+            });
+        });
+    }
+
+    if (toolSearch) {
+        toolSearch.addEventListener('input', renderTools);
+    }
 
     // Mobile Navigation
     const toggleSidebar = () => {
@@ -252,8 +279,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Boot
-    updateProgress();
-    renderTools();
+    setTimeout(() => {
+        updateProgress();
+        renderTools();
+    }, 800); // Slight delay to show skeleton
 
     // Intersection Observer for Reveal Anims
     const revealObserver = new IntersectionObserver((entries) => {

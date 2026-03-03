@@ -26,6 +26,9 @@
     --warning: #f59e0b;
     --error: #ef4444;
 
+    --skeleton-bg: rgba(255, 255, 255, 0.05);
+    --skeleton-highlight: rgba(255, 255, 255, 0.08);
+
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 20px;
@@ -745,18 +748,96 @@ h4,
     }
 }
 
-/* Animations */
-.reveal {
+/* Skeleton Loader */
+.skeleton {
+    background: var(--skeleton-bg);
+    background-image: linear-gradient(90deg, var(--skeleton-bg) 0px, var(--skeleton-highlight) 40px, var(--skeleton-bg) 80px);
+    background-size: 600px;
+    animation: skeleton-pulse 1.6s infinite linear;
+    border-radius: var(--radius-sm);
+}
+
+@keyframes skeleton-pulse {
+    0% {
+        background-position: -600px 0;
+    }
+
+    100% {
+        background-position: 600px 0;
+    }
+}
+
+.skeleton-text {
+    height: 12px;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.skeleton-title {
+    height: 24px;
+    margin-bottom: 1rem;
+    width: 60%;
+}
+
+.skeleton-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+}
+
+/* Roadmap Accordion Refinement */
+.roadmap-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s var(--ease-premium), opacity 0.5s var(--ease-premium);
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s var(--ease-premium);
 }
 
-.reveal.active {
+.roadmap-step.active .roadmap-content {
+    max-height: 1000px;
     opacity: 1;
-    transform: translateY(0);
+    margin-top: 1.5rem;
 }
 
+.roadmap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.roadmap-header::after {
+    content: '\f078';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    transition: transform 0.3s var(--ease-premium);
+}
+
+.roadmap-step.active .roadmap-header::after {
+    transform: rotate(180deg);
+    color: var(--accent-primary);
+}
+
+/* Tool Tooltips or Refined Badges */
+.tag-level {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+
+.learned .tool-icon {
+    color: var(--success);
+    background: rgba(16, 185, 129, 0.1);
+}
+
+/* Improved Back to Top */
 .back-to-top {
     position: fixed;
     bottom: 90px;
@@ -773,6 +854,11 @@ h4,
     visibility: hidden;
     transition: 0.3s;
     z-index: 1000;
+    backdrop-filter: blur(8px);
+    background: rgba(99, 102, 241, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .back-to-top.visible {
