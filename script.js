@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         toolsData.forEach((catData, catIndex) => {
             const categoryHTML = document.createElement('div');
-            categoryHTML.className = 'bookmark-category reveal active';
+            categoryHTML.className = 'bookmark-category reveal active collapsed';
             categoryHTML.id = `cat-${catIndex}`;
 
             const filteredTools = catData.tools.filter(tool => {
