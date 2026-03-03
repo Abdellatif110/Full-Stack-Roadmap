@@ -3,14 +3,30 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Full-Stack Master Roadmap | Progressive Learning Path</title>
     <meta name="description"
         content="A comprehensive, interactive, and modern roadmap for mastering Full-Stack Development. Learn Frontend, Backend, Databases, DevOps, and more.">
 
-    <!-- External Fonts and Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- PWA & SEO Meta -->
+    <meta name="theme-color" content="#0a0a0c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
+    <!-- Fonts Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap">
+
+    <!-- External Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        media="print" onload="this.media='all'">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -53,7 +69,25 @@
                     <span id="progressPercent">0%</span>
                 </div>
             </div>
+
+            <!-- Install Trigger & App Status -->
+            <div class="app-info-widget glass">
+                <button id="installBtn" class="pwa-install-btn hidden">
+                    <i class="fas fa-arrow-alt-circle-down"></i> Install Web App
+                </button>
+                <div id="pwaStatus" class="pwa-badge">
+                    <i class="fas fa-check-circle"></i> V1.2 (PWA)
+                </div>
+            </div>
         </aside>
+
+        <!-- Bottom Mobile Nav -->
+        <nav class="mobile-bottom-nav">
+            <a href="#hero" class="mob-link active"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="#roadmap" class="mob-link"><i class="fas fa-map-signs"></i><span>Path</span></a>
+            <a href="#bookmarks" class="mob-link"><i class="fas fa-bookmark"></i><span>Tools</span></a>
+            <button id="mobileMoreBtn" class="mob-link"><i class="fas fa-ellipsis-h"></i><span>More</span></button>
+        </nav>
 
         <!-- Main Content Area -->
         <main class="main-content">
@@ -617,8 +651,32 @@
                 </div>
             </section>
 
+            <!-- App Stats / Performance Dashboard -->
+            <section id="app-dashboard" class="section-card glass reveal" style="margin-top: 4rem; padding: 1.5rem;">
+                <h3 style="font-size: 1.25rem; margin-bottom: 1rem;"><i class="fas fa-tachometer-alt"></i> App Console
+                </h3>
+                <div class="perf-metrics-grid">
+                    <div class="perf-item">
+                        <span class="p-label">FCP (First Contentful Paint)</span>
+                        <span id="metric-fcp" class="p-val">-- ms</span>
+                    </div>
+                    <div class="perf-item">
+                        <span class="p-label">Cache Health</span>
+                        <span id="cache-status" class="p-val">Optimized <i class="fas fa-shield-alt"></i></span>
+                    </div>
+                    <div class="perf-item">
+                        <span class="p-label">App State</span>
+                        <span id="app-mode" class="p-val">Standard <i class="fas fa-globe"></i></span>
+                    </div>
+                </div>
+                <div id="updateToast" class="update-toast hidden">
+                    <span>A new version is available!</span>
+                    <button onclick="window.location.reload()" class="update-btn">Update Now</button>
+                </div>
+            </section>
+
             <footer
-                style="text-align: center; margin-top: 5rem; padding: 2rem; color: var(--text-muted); font-size: 0.8rem;">
+                style="text-align: center; margin-top: 2rem; padding: 2rem; padding-bottom: 5rem; color: var(--text-muted); font-size: 0.8rem;">
                 <p>&copy; 2026 FullStack Master Roadmap. Designed for ambitious developers.</p>
             </footer>
         </main>

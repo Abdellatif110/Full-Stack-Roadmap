@@ -1,0 +1,36 @@
+{
+  "name": "Full-Stack Development Master Roadmap",
+  "short_name": "FullStack Roadmap",
+  "description": "The definitive guide to becoming a world-class Full-Stack Architect.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0c",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+        "src": "favicon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    }
+  ],
+  "categories": ["education", "productivity", "developer tools"],
+  "shortcuts": [
+    {
+      "name": "The Master Roadmap",
+      "url": "#roadmap",
+      "icons": [{ "src": "favicon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Tools & Bookmarks",
+      "url": "#bookmarks",
+      "icons": [{ "src": "favicon.png", "sizes": "192x192" }]
+    }
+  ]
+}
