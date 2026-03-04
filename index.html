@@ -1,67 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="color-scheme" content="dark light">
+
     <title>Full-Stack Master Roadmap | Progressive Learning Path</title>
     <meta name="description"
         content="A comprehensive, interactive, and modern roadmap for mastering Full-Stack Development. Learn Frontend, Backend, Databases, DevOps, and more.">
 
-    <!-- PWA & SEO Meta -->
-    <meta name="theme-color" content="#0a0a0c">
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="full-stack, development, roadmap, frontend, backend, devops, learning, programming">
+    <meta name="author" content="FullStack Master Roadmap">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Full-Stack Master Roadmap">
+    <meta property="og:description" content="Your comprehensive guide to becoming a world-class Full-Stack Developer.">
+    <meta property="og:image" content="favicon.png">
+    <meta property="twitter:card" content="summary_large_image">
+
+    <!-- PWA Meta -->
+    <meta name="theme-color" content="#030712" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f9fafb" media="(prefers-color-scheme: light)">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-title" content="FullStack Roadmap">
+
+    <!-- <link rel="manifest" href="manifest.json"> -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
 
-    <!-- Fonts Preload -->
+    <!-- Preconnect to External Domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-    <!-- External Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        media="print" onload="this.media='all'">
+    <!-- Preload Critical Fonts -->
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Theme Initialization (Prevents Flash) -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
 </head>
 
 <body>
+    <!-- Premium Backdrop Elements -->
+    <div class="noise-overlay"></div>
+    <div class="glow-container">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
     <!-- Top Scroll Tracker -->
     <div class="scroll-tracker" id="scrollTracker"></div>
 
     <!-- Mobile Navigation Toggle -->
-    <button class="mobile-nav-toggle" id="mobileToggle">
-        <i class="fas fa-bars"></i>
+    <button class="mobile-nav-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <i class="fas fa-bars" aria-hidden="true"></i>
     </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
 
     <div class="app-container">
         <!-- Sidebar Navigation -->
-        <aside class="sidebar glass" id="sidebar">
-            <div class="logo">
-                <i class="fas fa-layer-group"></i>
-                FullStack.io
-            </div>
+        <aside class="sidebar glass" id="sidebar" aria-label="Main navigation">
+            <a href="#hero" class="logo">
+                <i class="fas fa-layer-group" aria-hidden="true"></i>
+                <span>FullStack.io</span>
+            </a>
 
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#hero" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
-                    <li><a href="#about"><i class="fas fa-info-circle"></i> What is Full-Stack</a></li>
-                    <li><a href="#characteristics"><i class="fas fa-bolt"></i> Key Characteristics</a></li>
-                    <li><a href="#roadmap"><i class="fas fa-map-signs"></i> The Master Roadmap</a></li>
-                    <li><a href="#bookmarks"><i class="fas fa-bookmark"></i> Tools & Bookmarks</a></li>
-                    <li><a href="#tech-stacks"><i class="fas fa-cubes"></i> Modern Tech Stacks</a></li>
-                    <li><a href="#reality"><i class="fas fa-exclamation-triangle"></i> Important Reality</a></li>
+            <nav aria-label="Primary">
+                <ul class="nav-links" role="menubar">
+                    <li role="none">
+                        <a href="#hero" class="active" role="menuitem" aria-current="page">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#about" role="menuitem">
+                            <i class="fas fa-info-circle" aria-hidden="true"></i>
+                            <span>1. What It Is</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#tech-stacks" role="menuitem">
+                            <i class="fas fa-cubes" aria-hidden="true"></i>
+                            <span>2. Tech Stacks</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#characteristics" role="menuitem">
+                            <i class="fas fa-bolt" aria-hidden="true"></i>
+                            <span>3. Characteristics</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#roadmap" role="menuitem">
+                            <i class="fas fa-map-signs" aria-hidden="true"></i>
+                            <span>Master Roadmap</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#bookmarks" role="menuitem">
+                            <i class="fas fa-bookmark" aria-hidden="true"></i>
+                            <span>Toolkit</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#reality" role="menuitem">
+                            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                            <span>The Reality</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
             <div class="progress-widget">
-                <h4>Course Progress</h4>
-                <div class="progress-bar-container">
+                <h4>Learning Progress</h4>
+                <div class="progress-bar-container" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                    aria-valuenow="0" aria-label="Overall progress">
                     <div class="progress-bar-fill" id="overallProgressBar"></div>
                 </div>
                 <div class="progress-text">
@@ -70,518 +151,755 @@
                 </div>
             </div>
 
-            <!-- Install Trigger & App Status -->
-            <div class="app-info-widget glass">
-                <button id="installBtn" class="pwa-install-btn hidden">
-                    <i class="fas fa-arrow-alt-circle-down"></i> Install Web App
+            <!-- PWA Install -->
+            <div class="app-info-widget">
+                <button id="installBtn" class="pwa-install-btn hidden" aria-label="Install app">
+                    <i class="fas fa-arrow-alt-circle-down" aria-hidden="true"></i>
+                    <span>Install App</span>
                 </button>
-                <div id="pwaStatus" class="pwa-badge">
-                    <i class="fas fa-check-circle"></i> V1.2 (PWA)
+                <div id="pwaStatus" class="pwa-badge" aria-label="App version">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <span>v2.0 PWA Ready</span>
                 </div>
             </div>
         </aside>
 
         <!-- Bottom Mobile Nav -->
-        <nav class="mobile-bottom-nav">
-            <a href="#hero" class="mob-link active"><i class="fas fa-home"></i><span>Home</span></a>
-            <a href="#roadmap" class="mob-link"><i class="fas fa-map-signs"></i><span>Path</span></a>
-            <a href="#bookmarks" class="mob-link"><i class="fas fa-bookmark"></i><span>Tools</span></a>
-            <button id="mobileMoreBtn" class="mob-link"><i class="fas fa-ellipsis-h"></i><span>More</span></button>
+        <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+            <a href="#hero" class="mob-link active" aria-current="page">
+                <i class="fas fa-home" aria-hidden="true"></i>
+                <span>Home</span>
+            </a>
+            <a href="#roadmap" class="mob-link">
+                <i class="fas fa-map-signs" aria-hidden="true"></i>
+                <span>Path</span>
+            </a>
+            <a href="#bookmarks" class="mob-link">
+                <i class="fas fa-bookmark" aria-hidden="true"></i>
+                <span>Tools</span>
+            </a>
+            <button id="mobileMoreBtn" class="mob-link" aria-label="More options">
+                <i class="fas fa-ellipsis-h" aria-hidden="true"></i>
+                <span>More</span>
+            </button>
         </nav>
 
         <!-- Main Content Area -->
         <main class="main-content">
+            <!-- Skip to content link for accessibility -->
+            <a href="#main-content" class="visually-hidden">Skip to main content</a>
+
             <!-- Top Navigation -->
-            <header class="top-nav">
+            <header class="top-nav" role="banner">
                 <div class="search-container">
-                    <i class="fas fa-search"></i>
+                    <i class="fas fa-search" aria-hidden="true"></i>
                     <input type="text" id="roadmapSearch" class="search-input"
-                        placeholder="Search for layers, tech, or concepts...">
+                        placeholder="Search for layers, tech, or concepts..." aria-label="Search roadmap"
+                        autocomplete="off">
                 </div>
 
                 <div class="top-actions">
-                    <button class="filter-toggle" title="Filter Roadmap" id="filterBtn">
-                        <i class="fas fa-filter"></i>
+                    <button class="filter-toggle action-btn" title="Filter Roadmap" id="filterBtn"
+                        aria-label="Filter roadmap" aria-expanded="false">
+                        <i class="fas fa-filter" aria-hidden="true"></i>
                     </button>
-                    <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode">
-                        <i class="fas fa-moon"></i>
+                    <button class="theme-toggle action-btn" id="themeToggle" title="Toggle Light/Dark Mode"
+                        aria-label="Toggle theme">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
                     </button>
                 </div>
             </header>
 
             <!-- Hero Section -->
-            <section id="hero" class="hero-section reveal">
-                <span class="badge">Master Class Path 2026</span>
-                <h1 class="hero-title"><i class="fas fa-layer-group"></i> Full-Stack Development <br><span
-                        class="accent-text">Master Roadmap</span></h1>
-                <p class="hero-subtitle">Scale from a frontend novice to a full-stack architect with our interactive
-                    learning journey. Real knowledge, real projects, real career.</p>
+            <section id="hero" class="hero-section reveal" aria-label="Hero">
+                <div class="hero-badge">
+                    <span>Master Class Path 2026</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">Full-Stack Development</span>
+                    <span class="title-line accent">Master Roadmap</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Scale from a frontend novice to a full-stack architect with our interactive
+                    learning journey. Real knowledge, real projects, real career.
+                </p>
+
+                <div class="hero-cta">
+                    <a href="#roadmap" class="btn btn-primary btn-lg">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                        Start Your Journey
+                    </a>
+                    <button class="btn btn-secondary btn-lg" onclick="scrollToSection('about')">
+                        <i class="fas fa-play-circle" aria-hidden="true"></i>
+                        Learn More
+                    </button>
+                </div>
 
                 <div class="stats-grid">
                     <div class="stat-card glass">
-                        <span class="stat-value" data-target="13">0</span>
+                        <span class="stat-value" data-target="13" aria-label="13 Core Layers">0</span>
                         <span class="stat-label">Core Layers</span>
                     </div>
                     <div class="stat-card glass">
-                        <span class="stat-value" data-target="45">0</span>
+                        <span class="stat-value" data-target="45" aria-label="45 Technologies">0</span>
                         <span class="stat-label">Technologies</span>
                     </div>
                     <div class="stat-card glass">
-                        <span class="stat-value" data-target="150">0</span>
+                        <span class="stat-value" data-target="150" aria-label="150 Learning Hours">0</span>
                         <span class="stat-label">Learning Hours</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Introduction Section -->
-            <section id="about" class="section-card glass reveal">
-                <h2 class="section-title"><i class="fas fa-compass"></i> What is Full-Stack Development?</h2>
-                <div class="content-block">
-                    <p>Full-Stack development is the art of building both the frontend (the part users see) and backend
-                        (the server-side logic and database) of a web application. A full-stack developer is a versatile
-                        engineer who can navigate through every layer of a project, from designing a pixel-perfect UI to
-                        optimizing database queries.</p>
+            <!-- Main Content Area -->
+            <div id="main-content">
 
+                <!-- Introduction Section -->
+                <section id="about" class="section-card glass reveal" aria-labelledby="about-title">
+                    <header class="section-header">
+                        <h2 class="section-title" id="about-title">
+                            <i class="fas fa-compass" aria-hidden="true"></i>
+                            1️⃣ What It Is?
+                        </h2>
+                    </header>
+                    <div class="content-block">
+                        <p class="section-p">Full-Stack Development is the ability to design, build, deploy, and
+                            maintain an entire software application across all layers: <strong>User Interface
+                                (Frontend)</strong>, <strong>Server Logic (Backend)</strong>, <strong>Database</strong>,
+                            <strong>Infrastructure & Deployment</strong>, and <strong>Security & Operations</strong>.
+                        </p>
+                        <p class="section-p">It means you understand how everything connects together — from a user
+                            clicking a button to data being stored, processed, secured, and served globally.</p>
+
+                        <blockquote>
+                            Development → Testing → Deployment → Monitoring → Maintenance
+                        </blockquote>
+
+                        <div class="info-grid">
+                            <article class="info-item">
+                                <h4>Types of Full-Stack Developers</h4>
+                                <ul>
+                                    <li><strong>Web Full-Stack:</strong> Builds web apps (most common).</li>
+                                    <li><strong>Mobile Full-Stack:</strong> Backend + Mobile apps (React Native /
+                                        Flutter).</li>
+                                    <li><strong>Cloud-Focused:</strong> Heavy DevOps + Infrastructure knowledge.</li>
+                                    <li><strong>Product-Oriented:</strong> Focused on startup-style rapid development.
+                                    </li>
+                                </ul>
+                            </article>
+                            <article class="info-item">
+                                <h4>How You've Learned It</h4>
+                                <p>You can <strong>Build From Scratch</strong>, <strong>Deploy to Production</strong>,
+                                    <strong>Debug Across Layers</strong>, <strong>Implement Security</strong>, and
+                                    <strong>Think in Architecture</strong>.
+                                </p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tech Stacks Section -->
+                <section id="tech-stacks" class="section-card glass reveal" aria-labelledby="tech-stacks-title">
+                    <header class="section-header">
+                        <h2 class="section-title" id="tech-stacks-title">
+                            <i class="fas fa-layer-group" aria-hidden="true"></i>
+                            2️⃣ Modern Tech Stacks
+                        </h2>
+                    </header>
                     <div class="info-grid">
-                        <div class="info-item">
-                            <h4>Types of Full-Stack Devs</h4>
-                            <ul>
-                                <li><strong>The Generalist:</strong> Evenly skilled in frontend and backend.</li>
-                                <li><strong>Frontend-Heavy:</strong> Strong UI/UX focus + Node or Python skills.</li>
-                                <li><strong>Backend-Heavy:</strong> Database architect + CSS/React capability.</li>
-                            </ul>
-                        </div>
-                        <div class="info-item">
-                            <h4>How You Know You've Learned It</h4>
-                            <p>You can conceptualize an idea, design the database schema, build the API, and deploy the
-                                functional frontend without needing external help for core functionality.</p>
-                        </div>
+                        <article class="info-item">
+                            <h4>MERN Stack</h4>
+                            <p>MongoDB, Express, React, Node.js</p>
+                        </article>
+                        <article class="info-item">
+                            <h4>MEAN Stack</h4>
+                            <p>MongoDB, Express, Angular, Node.js</p>
+                        </article>
+                        <article class="info-item">
+                            <h4>LAMP Stack</h4>
+                            <p>Linux, Apache, MySQL, PHP</p>
+                        </article>
+                        <article class="info-item">
+                            <h4>Django Stack</h4>
+                            <p>React/Vue + Django + PostgreSQL</p>
+                        </article>
+                        <article class="info-item">
+                            <h4>.NET Stack</h4>
+                            <p>Angular/React + ASP.NET + SQL Server</p>
+                        </article>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Key Characteristics -->
-            <section id="characteristics" class="section-card glass reveal">
-                <h2 class="section-title"><i class="fas fa-certificate"></i> Key Characteristics</h2>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <i class="fas fa-sync-alt fa-2x mb-1"></i>
-                        <h5>End-to-End Ownership</h5>
-                        <p>Taking a feature from idea to deployment.</p>
+                <!-- Key Characteristics -->
+                <section id="characteristics" class="section-card glass reveal" aria-labelledby="characteristics-title">
+                    <header class="section-header">
+                        <h2 class="section-title" id="characteristics-title">
+                            <i class="fas fa-certificate" aria-hidden="true"></i>
+                            3️⃣ Key Characteristics
+                        </h2>
+                    </header>
+                    <div class="info-grid">
+                        <article class="info-item">
+                            <i class="fas fa-brain fa-2x" aria-hidden="true"></i>
+                            <h5>Technical Breadth</h5>
+                            <p>Understands multiple layers, not just one.</p>
+                        </article>
+                        <article class="info-item">
+                            <i class="fas fa-sync-alt fa-2x" aria-hidden="true"></i>
+                            <h5>System Thinking</h5>
+                            <p>Sees the application as one connected system.</p>
+                        </article>
+                        <article class="info-item">
+                            <i class="fas fa-server fa-2x" aria-hidden="true"></i>
+                            <h5>Deployment Knowledge</h5>
+                            <p>Knows how to put an app into production.</p>
+                        </article>
+                        <article class="info-item">
+                            <i class="fas fa-shield-alt fa-2x" aria-hidden="true"></i>
+                            <h5>Security Awareness</h5>
+                            <p>Understands authentication, authorization, and vulnerabilities.</p>
+                        </article>
+                        <article class="info-item">
+                            <i class="fas fa-box-open fa-2x" aria-hidden="true"></i>
+                            <h5>DevOps Basics</h5>
+                            <p>Understands CI/CD, containers, cloud hosting.</p>
+                        </article>
+                        <article class="info-item">
+                            <i class="fas fa-tools fa-2x" aria-hidden="true"></i>
+                            <h5>Problem-Solving</h5>
+                            <p>Can debug issues across frontend, backend, or server.</p>
+                        </article>
                     </div>
-                    <div class="info-item">
-                        <i class="fas fa-project-diagram fa-2x mb-1"></i>
-                        <h5>System Thinking</h5>
-                        <p>Understanding how data flows between different layers.</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-tools fa-2x mb-1"></i>
-                        <h5>Tool Versatility</h5>
-                        <p>Being comfortable with JS, CSS, SQL, and CLI tools.</p>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Roadmap Section -->
-            <section id="roadmap" class="roadmap-section reveal">
-                <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> The Master Roadmap</h2>
-                <p class="section-subtitle">Click each layer to explore core concepts, technologies, and mastery
-                    criteria.</p>
+                <!-- Roadmap Section -->
+                <section id="roadmap" class="roadmap-section reveal" aria-labelledby="roadmap-title">
+                    <header class="section-header">
+                        <h2 class="section-title" id="roadmap-title">
+                            <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
+                            The Master Roadmap
+                        </h2>
+                        <p class="section-subtitle">Click each layer to explore core concepts, technologies, and mastery
+                            criteria.</p>
+                    </header>
 
-                <div class="roadmap-container" id="roadmapContainer">
-                    <!-- Roadmap Steps created statically for SEO and then interactive via JS -->
+                    <div class="roadmap-container" id="roadmapContainer">
+                        <!-- Timeline Progress -->
+                        <div class="roadmap-progress" id="roadmapProgress" aria-hidden="true"></div>
 
-                    <!-- Layer 1: Frontend -->
-                    <div class="roadmap-step" id="step-1" data-level="beginner">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>01. UI/UX Interface</h3>
-                                <span class="roadmap-tag tag-beginner">Beginner</span>
-                            </div>
-                            <p>Visual design, accessibility, and user interaction layer.</p>
-                            <div class="roadmap-content">
-                                <div class="details-grid">
-                                    <div class="detail-block">
-                                        <h5>Key Tech</h5>
-                                        <p>Figma, HTML5, CSS3, accessibility (A11y).</p>
-                                    </div>
-                                    <div class="detail-block">
-                                        <h5>Mastery Goal</h5>
-                                        <p>Build a pixel-perfect, accessible component from a design.</p>
-                                    </div>
+                        <!-- Layer 1: Frontend -->
+                        <div class="roadmap-step" id="step-1" data-level="beginner">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="window.toggleStepExpand(this.parentElement)">
+                                <div class="roadmap-header">
+                                    <h3>01. Frontend</h3>
+                                    <span class="roadmap-tag tag-beginner">Layer 1</span>
                                 </div>
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(0)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Layer 2: Client Apps -->
-                    <div class="roadmap-step" id="step-2" data-level="beginner">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>02. Frontend Frameworks</h3>
-                                <span class="roadmap-tag tag-beginner">Beginner</span>
-                            </div>
-                            <p>Building reactive and scalable single-page applications.</p>
-                            <div class="roadmap-content">
-                                <div class="details-grid">
-                                    <div class="detail-block">
-                                        <h5>Key Tech</h5>
-                                        <p>React, Next.js, Vue, Tailwind CSS.</p>
+                                <p>The presentation layer — everything the user sees and interacts with.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Types / Examples</h5>
+                                            <p><strong>Languages:</strong> HTML, CSS, JS/TS</p>
+                                            <p><strong>Frameworks:</strong> React, Vue, Angular, Next.js</p>
+                                            <p><strong>Mobile:</strong> React Native, Flutter</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Build a responsive app without copying tutorial code. Manage global state
+                                                & async API calls.</p>
+                                        </div>
                                     </div>
-                                    <div class="detail-block">
-                                        <h5>Mastery Goal</h5>
-                                        <p>Manage complex UI state and component lifecycles.</p>
-                                    </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(0)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
                                 </div>
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(1)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Layer 3: Application State -->
-                    <div class="roadmap-step" id="step-3" data-level="intermediate">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>03. State Management</h3>
-                                <span class="roadmap-tag tag-intermediate">Intermediate</span>
-                            </div>
-                            <p>Global data synchronization across the frontend tree.</p>
-                            <div class="roadmap-content">
-                                <div class="details-grid">
-                                    <div class="detail-block">
-                                        <h5>Key Tech</h5>
-                                        <p>Zustand, Redux Toolkit, React Query.</p>
-                                    </div>
+                        <!-- Layer 2: Backend -->
+                        <div class="roadmap-step" id="step-2" data-level="beginner">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="window.toggleStepExpand(this.parentElement)">
+                                <div class="roadmap-header">
+                                    <h3>02. Backend</h3>
+                                    <span class="roadmap-tag tag-beginner">Layer 2</span>
                                 </div>
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(2)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Layer 4: API Design -->
-                    <div class="roadmap-step" id="step-4" data-level="intermediate">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>04. API Design & Networking</h3>
-                                <span class="roadmap-tag tag-intermediate">Intermediate</span>
-                            </div>
-                            <p>Standardized communication between client and server.</p>
-                            <div class="roadmap-content">
-                                <div class="details-grid">
-                                    <div class="detail-block">
-                                        <h5>Key Tech</h5>
-                                        <p>REST, GraphQL, tRPC, Axios, Fetch API.</p>
+                                <p>The application logic layer that processes requests and enforces rules.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Types / Examples</h5>
+                                            <p><strong>Languages:</strong> Node.js, Python, Java, PHP, .NET</p>
+                                            <p><strong>Architectures:</strong> Monolith, Microservices, Serverless</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Build a secure CRUD API with authentication (JWT/sessions) and role-based
+                                                access.</p>
+                                        </div>
                                     </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(1)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
                                 </div>
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(3)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
                             </div>
+                        </div>
+
+                        <!-- Layer 3: API -->
+                        <div class="roadmap-step" id="step-3" data-level="intermediate">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="window.toggleStepExpand(this.parentElement)">
+                                <div class="roadmap-header">
+                                    <h3>03. API</h3>
+                                    <span class="roadmap-tag tag-intermediate">Layer 3</span>
+                                </div>
+                                <p>The communication contract between frontend and backend services.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Types</h5>
+                                            <p>REST, GraphQL, gRPC, SOAP</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Design clean endpoints, use proper status codes, and document with
+                                                Swagger.</p>
+                                        </div>
+                                    </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(2)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Layer 4: Database -->
+                        <div class="roadmap-step" id="step-4" data-level="intermediate">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="window.toggleStepExpand(this.parentElement)">
+                                <div class="roadmap-header">
+                                    <h3>04. Database</h3>
+                                    <span class="roadmap-tag tag-intermediate">Layer 4</span>
+                                </div>
+                                <p>Persistent data storage system. Choosing the right model for the job.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Types</h5>
+                                            <p><strong>SQL:</strong> MySQL, PostgreSQL, SQL Server</p>
+                                            <p><strong>NoSQL:</strong> MongoDB, Redis, Firebase</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Design normalized schemas, write complex joins, and optimize with
+                                                indexing.</p>
+                                        </div>
+                                    </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(3)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Layer 5: Servers -->
+                        <div class="roadmap-step" id="step-5" data-level="intermediate">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="window.toggleStepExpand(this.parentElement)">
+                                <div class="roadmap-header">
+                                    <h3>05. Servers</h3>
+                                    <span class="roadmap-tag tag-intermediate">Layer 5</span>
+                                </div>
+                                <p>Machines (physical or virtual) that run your applications.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Types</h5>
+                                            <p>VPS, Dedicated, Cloud instances, Serverless</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Deploy manually on Linux, use SSH, configure Nginx, and manage processes
+                                                with PM2.</p>
+                                        </div>
+                                    </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(4)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Layer 6: Networking -->
+                        <div class="roadmap-step" id="step-6" data-level="intermediate">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="window.toggleStepExpand(this.parentElement)">
+                                <div class="roadmap-header">
+                                    <h3>06. Networking</h3>
+                                    <span class="roadmap-tag tag-intermediate">Layer 6</span>
+                                </div>
+                                <p>How systems communicate over the internet securely and efficiently.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Includes</h5>
+                                            <p>DNS, IP addressing, TCP/IP, HTTPS, Firewalls</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Configure domains, install SSL certificates, understand CORS, and debug
+                                                network errors.</p>
+                                        </div>
+                                    </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(5)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Layer 7: Cloud Infrastructure -->
+                        <div class="roadmap-step" id="step-7" data-level="advanced">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="window.toggleStepExpand(this.parentElement)">
+                                <div class="roadmap-header">
+                                    <h3>07. Cloud Infrastructure</h3>
+                                    <span class="roadmap-tag tag-advanced">Layer 7</span>
+                                </div>
+                                <p>Hosting, scaling, and managing apps in global cloud environments.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Examples</h5>
+                                            <p>AWS, Azure, GCP, DigitalOcean</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Deploy backend to cloud, use managed DBs, and configure cloud storage
+                                                (S3).</p>
+                                        </div>
+                                    </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(6)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Layer 8: CI/CD Pipelines -->
+                        <div class="roadmap-step" id="step-8" data-level="intermediate">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="window.toggleStepExpand(this.parentElement)">
+                                <div class="roadmap-header">
+                                    <h3>08. CI/CD Pipelines</h3>
+                                    <span class="roadmap-tag tag-intermediate">Layer 8</span>
+                                </div>
+                                <p>Automated testing & deployment systems for rapid delivery.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Tools</h5>
+                                            <p>GitHub Actions, GitLab CI, Jenkins</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Setup auto-deploy on push, run tests automatically, and manage staging
+                                                environments.</p>
+                                        </div>
+                                    </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(7)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Layer 9: Security -->
+                        <div class="roadmap-step" id="step-9" data-level="advanced">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="window.toggleStepExpand(this.parentElement)">
+                                <div class="roadmap-header">
+                                    <h3>09. Security</h3>
+                                    <span class="roadmap-tag tag-advanced">Layer 9</span>
+                                </div>
+                                <p>Protecting the system and data from modern threats and vulnerabilities.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Includes</h5>
+                                            <p>Auth, Encryption, OWASP, Rate Limiting</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Prevent SQL Injection/XSS, secure password hashing, and store secrets
+                                                safely.</p>
+                                        </div>
+                                    </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(8)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Layer 10: Containers -->
+                        <div class="roadmap-step" id="step-10" data-level="advanced">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="window.toggleStepExpand(this.parentElement)">
+                                <div class="roadmap-header">
+                                    <h3>10. Containers</h3>
+                                    <span class="roadmap-tag tag-advanced">Layer 10</span>
+                                </div>
+                                <p>Packaging apps with all dependencies for absolute consistency.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Tools</h5>
+                                            <p>Docker, Kubernetes</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Write a Dockerfile, build images, and use Docker Compose for
+                                                multi-container apps.</p>
+                                        </div>
+                                    </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(9)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Layer 11: CDN -->
+                        <div class="roadmap-step" id="step-11" data-level="advanced">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="window.toggleStepExpand(this.parentElement)">
+                                <div class="roadmap-header">
+                                    <h3>11. CDN</h3>
+                                    <span class="roadmap-tag tag-advanced">Layer 11</span>
+                                </div>
+                                <p>Global distribution of static content to reduce latency everywhere.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Examples</h5>
+                                            <p>Cloudflare, Akamai, CloudFront</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Cache static files at the edge, configure TTL, and understand cache
+                                                invalidation.</p>
+                                        </div>
+                                    </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(10)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Layer 12: Monitoring & Logging -->
+                        <div class="roadmap-step" id="step-12" data-level="advanced">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="window.toggleStepExpand(this.parentElement)">
+                                <div class="roadmap-header">
+                                    <h3>12. Monitoring & Logging</h3>
+                                    <span class="roadmap-tag tag-advanced">Layer 12</span>
+                                </div>
+                                <p>Tracking health and debugging production systems in real-time.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Tools</h5>
+                                            <p>Prometheus, Grafana, ELK Stack, Sentry</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Log properly, track CPU/RAM metrics, setup alerts, and debug production
+                                                crashes.</p>
+                                        </div>
+                                    </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(11)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Layer 13: Backups & Recovery -->
+                        <div class="roadmap-step" id="step-13" data-level="advanced">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
+                                <div class="roadmap-header">
+                                    <h3>13. Backups & Recovery</h3>
+                                    <span class="roadmap-tag tag-advanced">Layer 13</span>
+                                </div>
+                                <p>Data protection strategy to ensure business continuity.</p>
+                                <div class="roadmap-content">
+                                    <div class="details-grid">
+                                        <div class="detail-block">
+                                            <h5>🔹 Types</h5>
+                                            <p>Full backup, Incremental, Snapshots</p>
+                                        </div>
+                                        <div class="detail-block">
+                                            <h5>🎯 Mastery Test</h5>
+                                            <p>Automate backups, restore databases from snapshots, and test recovery
+                                                processes.</p>
+                                        </div>
+                                    </div>
+                                    <button class="step-complete-btn"
+                                        onclick="event.stopPropagation(); window.toggleProgress(12)">
+                                        <i class="far fa-circle"></i> Mark Level Complete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Bookmarks & Tools Section -->
+                <section id="bookmarks" class="bookmarks-section reveal" aria-labelledby="bookmarks-title">
+                    <div class="section-card glass">
+                        <header class="section-header">
+                            <h2 class="section-title" id="bookmarks-title">
+                                <i class="fas fa-tools" aria-hidden="true"></i>
+                                Full Stack & QA Roadmap Bookmarks
+                            </h2>
+                            <p class="section-subtitle">Your personalized professional toolkit. Categorized, searchable,
+                                and trackable.</p>
+                        </header>
+                    </div>
+
+                    <!-- Bookmarks Search & Filters -->
+                    <div class="bookmarks-controls glass" role="search" aria-label="Filter tools">
+                        <button class="category-filter-btn active" data-filter="all" aria-pressed="true">
+                            <i class="fas fa-th-large" aria-hidden="true"></i>
+                            All Tools
+                        </button>
+                        <button class="category-filter-btn" data-filter="bookmarked" aria-pressed="false">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            Bookmarked
+                        </button>
+                        <button class="category-filter-btn" data-filter="learned" aria-pressed="false">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            Learned
+                        </button>
+                        <div class="flex-spacer" style="flex-grow: 1;"></div>
+                        <div class="search-container" style="width: 250px; margin-bottom: 0;">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                            <input type="text" id="toolSearch" class="search-input" placeholder="Search tools..."
+                                aria-label="Search tools" autocomplete="off">
                         </div>
                     </div>
 
-                    <!-- Layer 5: Backend Logic -->
-                    <div class="roadmap-step" id="step-5" data-level="intermediate">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>05. Server Infrastructure</h3>
-                                <span class="roadmap-tag tag-intermediate">Intermediate</span>
+                    <div id="bookmarksContainer" aria-live="polite" aria-busy="true">
+                        <div class="tools-grid">
+                            <!-- Skeleton placeholders -->
+                            <div class="tool-card glass skeleton-loader" aria-hidden="true">
+                                <div class="skeleton skeleton-icon"></div>
+                                <div class="skeleton skeleton-title"></div>
+                                <div class="skeleton skeleton-text"></div>
+                                <div class="skeleton skeleton-text short"></div>
                             </div>
-                            <p>Business logic, auth, and server-side processing.</p>
-                            <div class="roadmap-content">
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(4)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
+                            <div class="tool-card glass skeleton-loader" aria-hidden="true">
+                                <div class="skeleton skeleton-icon"></div>
+                                <div class="skeleton skeleton-title"></div>
+                                <div class="skeleton skeleton-text"></div>
+                                <div class="skeleton skeleton-text short"></div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Layer 6: Persistence -->
-                    <div class="roadmap-step" id="step-6" data-level="intermediate">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>06. Database Systems</h3>
-                                <span class="roadmap-tag tag-intermediate">Intermediate</span>
-                            </div>
-                            <p>Structured and unstructured data modeling.</p>
-                            <div class="roadmap-content">
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(5)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
+                            <div class="tool-card glass skeleton-loader" aria-hidden="true">
+                                <div class="skeleton skeleton-icon"></div>
+                                <div class="skeleton skeleton-title"></div>
+                                <div class="skeleton skeleton-text"></div>
+                                <div class="skeleton skeleton-text short"></div>
                             </div>
                         </div>
                     </div>
+                </section>
 
-                    <!-- Layer 7: Performance Caching -->
-                    <div class="roadmap-step" id="step-7" data-level="advanced">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>07. Caching & CDNs</h3>
-                                <span class="roadmap-tag tag-advanced">Advanced</span>
-                            </div>
-                            <p>Optimizing load times and reducing server load.</p>
-                            <div class="roadmap-content">
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(6)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
-                            </div>
+                <!-- Reality Check Section -->
+                <section id="reality" class="section-card glass reveal" aria-labelledby="reality-title">
+                    <header class="section-header">
+                        <h2 class="section-title" id="reality-title">
+                            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                            4️⃣ Important Reality
+                        </h2>
+                    </header>
+                    <div class="info-item" style="border-left: 4px solid var(--warning);">
+                        <p>Full-stack does <strong>NOT</strong> mean: Expert in everything or knows every framework. It
+                            means: <strong>Comfortable across the entire stack and capable of shipping real
+                                products.</strong></p>
+                    </div>
+
+                    <div class="info-grid" style="margin-top: var(--space-8);">
+                        <article class="info-item">
+                            <h4>🎯 Real Test</h4>
+                            <p>“Build a simple SaaS product and deploy it live.” If you can do it independently —
+                                <strong>You are full-stack.</strong>
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- App Stats / Performance Dashboard -->
+                <section id="app-dashboard" class="app-dashboard reveal" aria-labelledby="dashboard-title">
+                    <h3 id="dashboard-title">
+                        <i class="fas fa-tachometer-alt" aria-hidden="true"></i>
+                        App Console
+                    </h3>
+                    <div class="perf-metrics-grid">
+                        <div class="perf-item">
+                            <span class="p-label">First Contentful Paint</span>
+                            <span id="metric-fcp" class="p-val">-- ms</span>
+                        </div>
+                        <div class="perf-item">
+                            <span class="p-label">Cache Health</span>
+                            <span id="cache-status" class="p-val">
+                                Optimized
+                                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="perf-item">
+                            <span class="p-label">App Mode</span>
+                            <span id="app-mode" class="p-val">
+                                Standard
+                                <i class="fas fa-globe" aria-hidden="true"></i>
+                            </span>
                         </div>
                     </div>
+                </section>
 
-                    <!-- Layer 8: Security -->
-                    <div class="roadmap-step" id="step-8" data-level="intermediate">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>08. Security & Identity</h3>
-                                <span class="roadmap-tag tag-intermediate">Intermediate</span>
-                            </div>
-                            <p>OAuth, JWT, and application hardening.</p>
-                            <div class="roadmap-content">
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(7)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Layer 9: Real-time -->
-                    <div class="roadmap-step" id="step-9" data-level="advanced">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>09. Reactive Systems</h3>
-                                <span class="roadmap-tag tag-advanced">Advanced</span>
-                            </div>
-                            <p>WebSockets and Pub/Sub for live updates.</p>
-                            <div class="roadmap-content">
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(8)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Layer 10: Workers -->
-                    <div class="roadmap-step" id="step-10" data-level="advanced">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>10. Background Tasks</h3>
-                                <span class="roadmap-tag tag-advanced">Advanced</span>
-                            </div>
-                            <p>Queue management and asynchronous jobs.</p>
-                            <div class="roadmap-content">
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(9)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Layer 11: Orchestration -->
-                    <div class="roadmap-step" id="step-11" data-level="advanced">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>11. Containers & Infra</h3>
-                                <span class="roadmap-tag tag-advanced">Advanced</span>
-                            </div>
-                            <p>Docker, Kubernetes, and Cloud providers.</p>
-                            <div class="roadmap-content">
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(10)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Layer 12: Automation -->
-                    <div class="roadmap-step" id="step-12" data-level="advanced">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>12. CI/CD Pipelines</h3>
-                                <span class="roadmap-tag tag-advanced">Advanced</span>
-                            </div>
-                            <p>Automated building, testing, and shipping.</p>
-                            <div class="roadmap-content">
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(11)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Layer 13: Observability -->
-                    <div class="roadmap-step" id="step-13" data-level="advanced">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-card glass" onclick="this.parentElement.classList.toggle('active')">
-                            <div class="roadmap-header">
-                                <h3>13. Monitoring & Quality</h3>
-                                <span class="roadmap-tag tag-advanced">Advanced</span>
-                            </div>
-                            <p>Error tracking, logging, and performance audit.</p>
-                            <div class="roadmap-content">
-                                <button class="step-complete-btn"
-                                    onclick="event.stopPropagation(); window.toggleProgress(12)">
-                                    <i class="far fa-circle"></i> Mark Level Complete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- Bookmarks & Tools Section -->
-            <section id="bookmarks" class="bookmarks-section reveal">
-                <div class="section-card glass" style="margin-bottom: 2rem;">
-                    <h2 class="section-title"><i class="fas fa-tools"></i> Full-Stack & QA Roadmap Bookmarks</h2>
-                    <p class="section-subtitle">Your personalized professional toolkit. Categorized, searchable, and
-                        trackable.</p>
-                </div>
-
-                <!-- Bookmarks Search & Filters -->
-                <div class="bookmarks-controls glass">
-                    <button class="category-filter-btn active" data-filter="all">All Tools</button>
-                    <button class="category-filter-btn" data-filter="bookmarked"><i class="fas fa-star"></i>
-                        Bookmarked</button>
-                    <button class="category-filter-btn" data-filter="learned"><i class="fas fa-check-circle"></i>
-                        Learned</button>
-                    <div style="flex-grow: 1;"></div>
-                    <div class="search-container" style="width: 250px; margin-bottom: 0;">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="toolSearch" class="search-input" placeholder="Search tools...">
-                    </div>
-                </div>
-
-                <div id="bookmarksContainer">
-                    <div class="tools-grid">
-                        <!-- Skeleton placeholders -->
-                        <div class="tool-card glass skeleton-loader">
-                            <div class="skeleton skeleton-icon"></div>
-                            <div class="skeleton skeleton-title"></div>
-                            <div class="skeleton skeleton-text"></div>
-                            <div class="skeleton skeleton-text" style="width: 80%;"></div>
-                        </div>
-                        <div class="tool-card glass skeleton-loader">
-                            <div class="skeleton skeleton-icon"></div>
-                            <div class="skeleton skeleton-title"></div>
-                            <div class="skeleton skeleton-text"></div>
-                            <div class="skeleton skeleton-text" style="width: 80%;"></div>
-                        </div>
-                        <div class="tool-card glass skeleton-loader">
-                            <div class="skeleton skeleton-icon"></div>
-                            <div class="skeleton skeleton-title"></div>
-                            <div class="skeleton skeleton-text"></div>
-                            <div class="skeleton skeleton-text" style="width: 80%;"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Tech Stacks Section -->
-            <section id="tech-stacks" class="section-card glass reveal">
-                <h2 class="section-title"><i class="fas fa-layer-group"></i> Popular tech-stacks</h2>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <h4>MERN Stack</h4>
-                        <p>MongoDB, Express.js, React, Node.js. (JS-centric)</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>MEAN Stack</h4>
-                        <p>MongoDB, Express.js, Angular, Node.js.</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>LAMP Stack</h4>
-                        <p>Linux, Apache, MySQL, PHP. (Classic)</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>Django Stack</h4>
-                        <p>Python/Django + React/Vue + PostgreSQL.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Reality Check Section -->
-            <section id="reality" class="section-card glass reveal">
-                <h2 class="section-title"><i class="fas fa-exclamation-triangle"></i> Important Reality</h2>
-                <div class="info-item" style="border-left: 5px solid var(--warning-color);">
-                    <p>Becoming a Full-Stack developer isn't about knowing every library; it's about <strong>Problem
-                            Solving</strong>. Most of your time will be spent reading documentation and debugging.
-                        Mastery comes from building projects, not just watching tutorials.</p>
-                </div>
-
-                <div class="info-grid" style="margin-top: 2rem;">
-                    <div class="info-item">
-                        <h4>The "Real Test"</h4>
-                        <p>Can you build a production-ready application that handles user authentication, file uploads,
-                            and state management without following a step-by-step guide?</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- App Stats / Performance Dashboard -->
-            <section id="app-dashboard" class="section-card glass reveal" style="margin-top: 4rem; padding: 1.5rem;">
-                <h3 style="font-size: 1.25rem; margin-bottom: 1rem;"><i class="fas fa-tachometer-alt"></i> App Console
-                </h3>
-                <div class="perf-metrics-grid">
-                    <div class="perf-item">
-                        <span class="p-label">FCP (First Contentful Paint)</span>
-                        <span id="metric-fcp" class="p-val">-- ms</span>
-                    </div>
-                    <div class="perf-item">
-                        <span class="p-label">Cache Health</span>
-                        <span id="cache-status" class="p-val">Optimized <i class="fas fa-shield-alt"></i></span>
-                    </div>
-                    <div class="perf-item">
-                        <span class="p-label">App State</span>
-                        <span id="app-mode" class="p-val">Standard <i class="fas fa-globe"></i></span>
-                    </div>
-                </div>
-                <div id="updateToast" class="update-toast hidden">
+                <!-- Update Toast Notification -->
+                <div id="updateToast" class="update-toast" role="alert" aria-live="polite">
                     <span>A new version is available!</span>
                     <button onclick="window.location.reload()" class="update-btn">Update Now</button>
                 </div>
-            </section>
 
-            <footer
-                style="text-align: center; margin-top: 2rem; padding: 2rem; padding-bottom: 5rem; color: var(--text-muted); font-size: 0.8rem;">
-                <p>&copy; 2026 FullStack Master Roadmap. Designed for ambitious developers.</p>
-            </footer>
+                <footer class="site-footer">
+                    <p>&copy; 2026 FullStack Master Roadmap. Designed for ambitious developers.</p>
+                </footer>
+
+            </div><!-- /#main-content -->
         </main>
     </div>
 
     <!-- Floating Back to Top Button -->
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-chevron-up"></i>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
     </button>
 
     <script src="script.js"></script>
