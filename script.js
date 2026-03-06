@@ -26,11 +26,23 @@
     // ============================================
     // STATE MANAGEMENT
     // ============================================
+
+    function safeParseJSON(key, fallback) {
+        try {
+            const item = localStorage.getItem(key);
+            return item ? JSON.parse(item) : fallback;
+        } catch (e) {
+            console.warn(`[App] Expected valid JSON for ${key}, falling back to default.`);
+            return fallback;
+        }
+    }
+    // STATE MANAGEMENT
+    // ============================================
     const state = {
         theme: localStorage.getItem('theme') || 'dark',
-        completedSteps: JSON.parse(localStorage.getItem('fullstackProgress')) || [],
-        bookmarkedTools: JSON.parse(localStorage.getItem('bookmarkedTools')) || [],
-        learnedTools: JSON.parse(localStorage.getItem('learnedTools')) || [],
+        completedSteps: safeParseJSON('fullstackProgress', []),
+        bookmarkedTools: safeParseJSON('bookmarkedTools', []),
+        learnedTools: safeParseJSON('learnedTools', []),
         sidebarOpen: false,
         deferredPrompt: null
     };

@@ -3,7 +3,7 @@
  * v2.0 - Advanced Caching Strategy
  */
 
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 const STATIC_CACHE = `fullstack-roadmap-static-${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `fullstack-roadmap-dynamic-${CACHE_VERSION}`;
 const IMAGE_CACHE = `fullstack-roadmap-images-${CACHE_VERSION}`;
@@ -172,14 +172,14 @@ self.addEventListener('fetch', (event) => {
             .catch(() => {
                 return caches.match(request).then((cached) => {
                     if (cached) return cached;
-                    
+
                     // Return offline fallback for navigation
                     if (request.mode === 'navigate') {
                         return new Response(OFFLINE_FALLBACK, {
                             headers: { 'Content-Type': 'text/html' }
                         });
                     }
-                    
+
                     return new Response('Offline', { status: 503 });
                 });
             })
@@ -193,9 +193,9 @@ self.addEventListener('fetch', (event) => {
 async function cacheFirst(request, cacheName) {
     const cache = await caches.open(cacheName);
     const cached = await cache.match(request);
-    
+
     if (cached) return cached;
-    
+
     try {
         const response = await fetch(request);
         if (response.ok) {
@@ -210,7 +210,7 @@ async function cacheFirst(request, cacheName) {
 async function staleWhileRevalidate(request, cacheName) {
     const cache = await caches.open(cacheName);
     const cached = await cache.match(request);
-    
+
     const fetchPromise = fetch(request)
         .then((response) => {
             if (response.ok) {
@@ -219,7 +219,7 @@ async function staleWhileRevalidate(request, cacheName) {
             return response;
         })
         .catch(() => cached);
-    
+
     return cached || fetchPromise;
 }
 
@@ -248,8 +248,8 @@ function isStaticAsset(url) {
         'fonts.gstatic.com',
         'cdnjs.cloudflare.com'
     ];
-    return staticHosts.includes(url.hostname) || 
-           STATIC_ASSETS.some(asset => url.href.includes(asset.replace('./', '')));
+    return staticHosts.includes(url.hostname) ||
+        STATIC_ASSETS.some(asset => url.href.includes(asset.replace('./', '')));
 }
 
 function isImage(request) {
@@ -278,12 +278,12 @@ async function syncProgressData() {
 // PUSH NOTIFICATIONS (Placeholder)
 // ============================================
 self.addEventListener('push', (event) => {
-    const data = event.data ? event.data.json() : { 
-        title: 'Full-Stack Roadmap', 
+    const data = event.data ? event.data.json() : {
+        title: 'Full-Stack Roadmap',
         body: 'New content available!',
         icon: './favicon.png'
     };
-    
+
     event.waitUntil(
         self.registration.showNotification(data.title, {
             body: data.body,
