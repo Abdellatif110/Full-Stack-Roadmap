@@ -30,7 +30,8 @@
     function safeParseJSON(key, fallback) {
         try {
             const item = localStorage.getItem(key);
-            return item ? JSON.parse(item) : fallback;
+            const parsed = item ? JSON.parse(item) : fallback;
+            return (parsed !== null && Array.isArray(parsed) === Array.isArray(fallback)) ? parsed : fallback;
         } catch (e) {
             console.warn(`[App] Expected valid JSON for ${key}, falling back to default.`);
             return fallback;
