@@ -263,22 +263,30 @@
                         </h2>
                     </header>
                     <div class="content-block">
-                        <p class="section-p">Full-Stack Development is the ability to design, build, deploy, and
+                        <p class="section-p about-lead">Full-Stack Development is the ability to design, build, deploy,
+                            and
                             maintain an entire software application across all layers: <strong>User Interface
                                 (Frontend)</strong>, <strong>Server Logic (Backend)</strong>, <strong>Database</strong>,
                             <strong>Infrastructure & Deployment</strong>, and <strong>Security & Operations</strong>.
                         </p>
                         <p class="section-p">It means you understand how everything connects together — from a user
                             clicking a button to data being stored, processed, secured, and served globally.</p>
-                        <blockquote>
-                            Development &nbsp;&nbsp; → &nbsp;&nbsp; Testing &nbsp;&nbsp; → &nbsp;&nbsp; Deployment
-                            &nbsp;&nbsp; → &nbsp;&nbsp; Monitoring &nbsp;&nbsp; → &nbsp;&nbsp; Maintenance
-                        </blockquote>
+                        <div class="process-bar">
+                            <span>Development</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Testing</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Deployment</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Monitoring</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Maintenance</span>
+                        </div>
                         <br>
-                        <div class="info-grid">
+                        <div class="info-grid about-grid">
                             <article class="info-item">
                                 <h4>Types of Full-Stack Developers</h4>
-                                <ul>
+                                <ul class="clean-list">
                                     <li><strong>Web Full-Stack:</strong> Builds web apps (most common).</li>
                                     <li><strong>Mobile Full-Stack:</strong> Backend + Mobile apps (React Native /
                                         Flutter).</li>
@@ -1040,8 +1048,8 @@
     <!-- Force toolkit render as fallback -->
     <script>
         // Direct fallback to ensure toolkit renders
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
                 const container = document.getElementById('bookmarksContainer');
                 if (container && container.querySelector('.skeleton-loader')) {
                     console.log('[Fallback] Rendering toolkit directly');
